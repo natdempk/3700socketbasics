@@ -1,1 +1,16 @@
-# cs3700project1
+CS3700 - Project 1
+Nathaniel Dempkowski and Sean Andrews, Team project1
+
+High-level Approach
+===================
+
+We first parse the flags and options, including the SSL flag. Depending on whether this flag is set, we connect using a regular or SSL socket. We send a HELLO and then read a response. We parse this response by splitting on spaces and performing the arithmetic requested. Then we send back the solution and check for another response. If we got the secret flag, we print it, otherwise we repeat the parsing and math operation.
+
+Challenges Faced
+================
+
+We used Go. We haven't used Go before, so it was a learning experience. A decent chunk of time was spent getting tooling up and looking up methods. We also had an outdated version of the webpage for the Spring class, so that caused about 15 seconds of problems.
+
+Testing
+=======
+We ran our code against the server in different required scenarios for the assignment, and made sure we got secret flags back. We tested different ports, SSL support, different NUIDs, and different hostnames.
