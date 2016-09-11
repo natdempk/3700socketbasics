@@ -20,7 +20,7 @@ func main() {
 	ssl := *sslPtr
 
 	hostName := flag.Args()[0]
-	neuId := flag.Args()[1]
+	neuID := flag.Args()[1]
 
 	var conn net.Conn
 
@@ -32,7 +32,7 @@ func main() {
 	} else {
 		conn, _ = net.Dial("tcp", hostName+":"+strconv.Itoa(port))
 	}
-	fmt.Fprintf(conn, "cs3700fall2016 HELLO %s\n", neuId)
+	fmt.Fprintf(conn, "cs3700fall2016 HELLO %s\n", neuID)
 
 	reader := bufio.NewReader(conn)
 
@@ -42,9 +42,9 @@ func main() {
 		if secret != "" {
 			fmt.Println(secret)
 			return
-		} else {
-			fmt.Fprintf(conn, "cs3700fall2016 %d\n", solution)
 		}
+
+		fmt.Fprintf(conn, "cs3700fall2016 %d\n", solution)
 	}
 
 }
@@ -55,9 +55,9 @@ func parse(response string) (int, string) {
 		x, _ := strconv.Atoi(splitResponse[2])
 		y, _ := strconv.Atoi(splitResponse[4])
 		return math(x, y, splitResponse[3]), ""
-	} else { // found solution
-		return 0, splitResponse[2]
 	}
+	// found solution
+	return 0, splitResponse[2]
 }
 
 func math(x int, y int, operator string) int {
