@@ -49,15 +49,16 @@ func main() {
 
 }
 
-func parse(response string) (int, string) {
+func parse(response string) (solution int, secret string) {
 	splitResponse := strings.Split(strings.TrimSpace(response), " ")
 	if len(splitResponse) == 5 {
 		x, _ := strconv.Atoi(splitResponse[2])
 		y, _ := strconv.Atoi(splitResponse[4])
-		return math(x, y, splitResponse[3]), ""
+		solution = math(x, y, splitResponse[3])
+	} else {
+		secret = splitResponse[2]
 	}
-	// found solution
-	return 0, splitResponse[2]
+	return
 }
 
 func math(x int, y int, operator string) int {
