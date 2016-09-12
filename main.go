@@ -11,13 +11,24 @@ import (
 )
 
 func main() {
-	portPtr := flag.Int("p", 27993, "port")
+	defaultPort := 27993
+	defaultSSLPort := 27994
+
+	portPtr := flag.Int("p", -1, "port")
 	sslPtr := flag.Bool("s", false, "SSL enabled")
 
 	flag.Parse()
 
 	port := *portPtr
 	ssl := *sslPtr
+
+	if port == -1 {
+		if ssl {
+			port = defaultSSLPort
+		} else {
+			port = defaultPort
+		}
+	}
 
 	hostName := flag.Args()[0]
 	neuID := flag.Args()[1]
